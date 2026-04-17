@@ -1,94 +1,1063 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>给周老师的一些信息</title>
-  <style>
-    :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --link: #0b5fff;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术分享 · GitHub Pages 免费建站指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        neon: '#FF6B2B',
+        neonDark: '#CC5500',
+        silver: '#C0C0C0',
+        silverLight: '#E8E8E8',
+        dark: {
+          900: '#0A0A0A',
+          800: '#111111',
+          700: '#1A1A1A',
+          600: '#222222',
+          500: '#2A2A2A',
+          400: '#333333',
+          300: '#555555',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      }
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-      line-height: 1.65;
-      padding: 24px;
-    }
-    .wrap {
-      max-width: 860px;
-      margin: 0 auto;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 24px;
-    }
-    h1 {
-      margin: 0 0 12px;
-      font-size: 28px;
-    }
-    p {
-      margin: 8px 0;
-    }
-    .muted {
-      color: var(--muted);
-      font-size: 14px;
-    }
-    ul {
-      padding-left: 20px;
-      margin: 12px 0;
-    }
-    li {
-      margin: 8px 0;
-      word-break: break-all;
-    }
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .note {
-      margin-top: 20px;
-      padding: 12px 14px;
-      border-left: 4px solid #f59e0b;
-      background: #fffbeb;
-      color: #78350f;
-      border-radius: 8px;
-    }
-  </style>
+  }
+}
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #fff; overflow-x: hidden; }
+  
+  /* 纹理背景 */
+  .texture-bg {
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(255,107,43,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(192,192,192,0.02) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* 荧光橙光效 */
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(255,107,43,0.15), 0 0 60px rgba(255,107,43,0.05);
+  }
+  .neon-glow-strong {
+    box-shadow: 0 0 30px rgba(255,107,43,0.25), 0 0 80px rgba(255,107,43,0.08);
+  }
+  .neon-text-glow {
+    text-shadow: 0 0 40px rgba(255,107,43,0.3);
+  }
+
+  /* 银色光效 */
+  .silver-shine {
+    background: linear-gradient(135deg, #999 0%, #fff 50%, #999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 进入动画 */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes pulse-neon {
+    0%, 100% { box-shadow: 0 0 20px rgba(255,107,43,0.2); }
+    50% { box-shadow: 0 0 40px rgba(255,107,43,0.4); }
+  }
+  @keyframes lineExpand {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 600px; }
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+  .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+  .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+  .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+  .animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+
+  /* 分隔线 */
+  .divider-neon {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,107,43,0.4), transparent);
+  }
+  .divider-silver {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(192,192,192,0.2), transparent);
+  }
+
+  /* 卡片悬停 */
+  .card-dark {
+    background: linear-gradient(145deg, #1A1A1A 0%, #111111 100%);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.4s ease;
+  }
+  .card-dark:hover {
+    border-color: rgba(255,107,43,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,43,0.05);
+  }
+
+  /* 链接卡片 */
+  .link-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .link-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: #FF6B2B;
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+    transform-origin: bottom;
+  }
+  .link-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  /* 视频容器 */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    border-radius: 8px;
+  }
+
+  /* 标签 */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+  .tag-neon {
+    background: rgba(255,107,43,0.1);
+    color: #FF6B2B;
+    border: 1px solid rgba(255,107,43,0.2);
+  }
+  .tag-silver {
+    background: rgba(192,192,192,0.08);
+    color: #C0C0C0;
+    border: 1px solid rgba(192,192,192,0.15);
+  }
+
+  /* 编号 */
+  .step-number {
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(255,107,43,0.06);
+    position: absolute;
+    top: -10px; left: -5px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* 导航 */
+  .nav-link {
+    position: relative;
+    color: #999;
+    transition: color 0.3s;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: #FF6B2B;
+    transition: width 0.3s;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* 滚动条 */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0A0A0A; }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #FF6B2B; }
+
+  /* 手机端菜单 */
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .mobile-menu.open {
+    max-height: 400px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1A1A1A;
+    border: 1px solid rgba(255,107,43,0.3);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+</style>
 </head>
-<body>
-  <main class="wrap">
-    <h1>给周老师的一些信息</h1>
-    <p>这份材料用于快速说明：<strong>部分灰产网站/社群常见的运作方式与引流路径</strong>，供老师了解和教学参考。</p>
+<body class="texture-bg">
 
-    <p class="muted">参考链接（原文整理）：</p>
-    <ul>
-      <li><a href="https://aicoco.xyz/home" target="_blank" rel="noopener noreferrer">https://aicoco.xyz/home</a></li>
-      <li><a href="https://shop.86gamestore.com/" target="_blank" rel="noopener noreferrer">https://shop.86gamestore.com/</a></li>
-      <li><a href="https://linux.do/t/topic/188813/1179" target="_blank" rel="noopener noreferrer">https://linux.do/t/topic/188813/1179</a></li>
-      <li><a href="https://yanglei-985.github.io/worktable/" target="_blank" rel="noopener noreferrer">https://yanglei-985.github.io/worktable/</a></li>
-    </ul>
+<!-- Toast -->
+<div id="toast" class="toast"></div>
 
-    <h2>建议分享重点（简版）</h2>
-    <ul>
-      <li>灰产内容常通过“低门槛教程 + 快速变现”吸引用户。</li>
-      <li>站点通常会结合社群、商店、教程帖进行流量转化。</li>
-      <li>GitHub Pages 等免费建站工具，可能被用于包装展示页和引流页面。</li>
-    </ul>
+<!-- 导航栏 -->
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 bg-neon rounded flex items-center justify-center neon-glow">
+          <span class="iconify text-black text-lg" data-icon="mdi:code-braces"></span>
+        </div>
+        <span class="text-white font-bold text-sm tracking-wider">TECH<span class="text-neon">SHARE</span></span>
+      </a>
+      
+      <!-- 桌面导航 -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#resources" class="nav-link">资源</a>
+        <a href="#tutorial" class="nav-link">教程</a>
+        <a href="#video" class="nav-link">视频</a>
+        <a href="#cases" class="nav-link">案例</a>
+        <a href="#extra" class="nav-link">更多</a>
+      </div>
 
-    <div class="note">
-      <strong>提醒：</strong>该页面仅用于风险识别与教学交流，不用于传播或参与任何违规行为。
+      <!-- CTA -->
+      <div class="hidden md:block">
+        <a href="#video" class="inline-flex items-center gap-2 bg-neon hover:bg-neonDark text-black text-xs font-bold tracking-wider uppercase px-5 py-2.5 rounded transition-all neon-glow">
+          <span class="iconify text-sm" data-icon="mdi:play"></span>
+          观看教程
+        </a>
+      </div>
+
+      <!-- 移动端菜单按钮 -->
+      <button class="md:hidden text-white" id="menuBtn" onclick="toggleMenu()">
+        <span class="iconify text-2xl" data-icon="mdi:menu" id="menuIcon"></span>
+      </button>
     </div>
-  </main>
+
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu md:hidden" id="mobileMenu">
+      <div class="py-4 border-t border-dark-500 flex flex-col gap-3">
+        <a href="#resources" class="nav-link py-2" onclick="closeMenu()">资源</a>
+        <a href="#tutorial" class="nav-link py-2" onclick="closeMenu()">教程</a>
+        <a href="#video" class="nav-link py-2" onclick="closeMenu()">视频</a>
+        <a href="#cases" class="nav-link py-2" onclick="closeMenu()">案例</a>
+        <a href="#extra" class="nav-link py-2" onclick="closeMenu()">更多</a>
+        <a href="#video" class="inline-flex items-center justify-center gap-2 bg-neon text-black text-xs font-bold tracking-wider uppercase px-5 py-2.5 rounded mt-2" onclick="closeMenu()">
+          <span class="iconify text-sm" data-icon="mdi:play"></span>
+          观看教程
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- 背景图 -->
+  <div class="absolute inset-0">
+    <img src="https://picsum.photos/seed/darkcode2024/1920/1080.jpg" alt="" class="w-full h-full object-cover opacity-15">
+    <div class="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-900/95 to-dark-900/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-dark-900/80"></div>
+  </div>
+
+  <!-- 装饰线条 -->
+  <div class="absolute top-1/2 right-0 w-px h-40 bg-gradient-to-b from-transparent via-neon/30 to-transparent transform -translate-y-1/2 hidden lg:block"></div>
+  <div class="absolute top-1/4 right-20 w-1 h-1 bg-neon rounded-full hidden lg:block" style="animation: pulse-neon 2s infinite;"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 pt-24 pb-16 w-full">
+    <div class="max-w-3xl">
+      <!-- 标签 -->
+      <div class="flex items-center gap-3 mb-6" style="animation: fadeInUp 0.8s ease forwards;">
+        <span class="tag tag-neon">
+          <span class="iconify" data-icon="mdi:github"></span>
+          GitHub Pages
+        </span>
+        <span class="tag tag-silver">
+          <span class="iconify" data-icon="mdi:currency-usd-off"></span>
+          完全免费
+        </span>
+      </div>
+
+      <!-- 主标题 -->
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight mb-6" style="animation: fadeInUp 0.8s 0.15s ease both;">
+        <span class="text-white">零成本</span><br>
+        <span class="silver-shine">搭建你的</span><br>
+        <span class="text-neon neon-text-glow">专属网站</span>
+      </h1>
+
+      <!-- 副标题 -->
+      <p class="text-dark-300 text-base md:text-lg leading-relaxed max-w-xl mb-10" style="animation: fadeInUp 0.8s 0.3s ease both;">
+        无需服务器、无需域名、无需编程基础。<br class="hidden md:block">
+        用 GitHub Pages，从零到上线，只需 <span class="text-white font-semibold">15 分钟</span>。
+      </p>
+
+      <!-- CTA按钮组 -->
+      <div class="flex flex-wrap gap-4" style="animation: fadeInUp 0.8s 0.45s ease both;">
+        <a href="#video" class="inline-flex items-center gap-2.5 bg-neon hover:bg-neonDark text-black text-sm font-bold tracking-wider uppercase px-7 py-3.5 rounded transition-all neon-glow-strong">
+          <span class="iconify text-lg" data-icon="mdi:play-circle"></span>
+          视频教程
+        </a>
+        <a href="#resources" class="inline-flex items-center gap-2.5 bg-dark-700 hover:bg-dark-600 text-white text-sm font-bold tracking-wider uppercase px-7 py-3.5 rounded border border-dark-400 hover:border-neon/30 transition-all">
+          <span class="iconify text-lg" data-icon="mdi:folder-outline"></span>
+          查看资源
+        </a>
+      </div>
+
+      <!-- 数据统计 -->
+      <div class="flex gap-10 mt-14" style="animation: fadeInUp 0.8s 0.6s ease both;">
+        <div>
+          <div class="text-2xl font-black text-white">¥0</div>
+          <div class="text-xs text-dark-300 uppercase tracking-wider mt-1">搭建成本</div>
+        </div>
+        <div class="w-px bg-dark-500"></div>
+        <div>
+          <div class="text-2xl font-black text-white">15<span class="text-neon text-lg">min</span></div>
+          <div class="text-xs text-dark-300 uppercase tracking-wider mt-1">上手时间</div>
+        </div>
+        <div class="w-px bg-dark-500"></div>
+        <div>
+          <div class="text-2xl font-black text-white">∞</div>
+          <div class="text-xs text-dark-300 uppercase tracking-wider mt-1">自定义可能</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 滚动提示 -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="animation: fadeInUp 1s 1s ease both;">
+    <span class="text-dark-300 text-[10px] uppercase tracking-widest">向下滚动</span>
+    <div class="w-5 h-8 border border-dark-400 rounded-full flex justify-center pt-1.5">
+      <div class="w-1 h-2 bg-neon rounded-full" style="animation: bounce 1.5s infinite;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 核心资源 ============ -->
+<section id="resources" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <!-- 区块标题 -->
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">CORE RESOURCES</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        核心<span class="text-neon">资源</span>清单
+      </h2>
+      <p class="text-dark-300 mt-3 max-w-lg text-sm leading-relaxed">所有工具和链接，按需取用。每一条都是经过验证的可用资源。</p>
+    </div>
+
+    <!-- 资源卡片网格 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      
+      <!-- 资源1: AICOCO -->
+      <a href="https://aicoco.xyz/home" target="_blank" class="animate-on-scroll delay-1 link-card card-dark rounded-lg p-6 block group">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-dark-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-neon/10 transition-colors">
+            <span class="iconify text-2xl text-neon" data-icon="mdi:robot-outline"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5">
+              <h3 class="text-white font-bold text-base">AICOCO · AI 工具导航</h3>
+              <span class="iconify text-dark-300 group-hover:text-neon transition-colors text-lg" data-icon="mdi:open-in-new"></span>
+            </div>
+            <p class="text-dark-300 text-sm leading-relaxed">精选 AI 工具合集，涵盖写作、设计、编程、视频等多个领域。持续更新，帮你快速找到合适的 AI 工具。</p>
+            <div class="flex gap-2 mt-3">
+              <span class="tag tag-silver text-[9px]">AI工具</span>
+              <span class="tag tag-silver text-[9px]">导航站</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 资源2: 账号商店 -->
+      <a href="https://shop.86gamestore.com/" target="_blank" class="animate-on-scroll delay-2 link-card card-dark rounded-lg p-6 block group">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-dark-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-neon/10 transition-colors">
+            <span class="iconify text-2xl text-neon" data-icon="mdi:gamepad-variant-outline"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5">
+              <h3 class="text-white font-bold text-base">86GameStore · 账号资源</h3>
+              <span class="iconify text-dark-300 group-hover:text-neon transition-colors text-lg" data-icon="mdi:open-in-new"></span>
+            </div>
+            <p class="text-dark-300 text-sm leading-relaxed">账号资源商店，提供各类账号相关产品和服务。</p>
+            <div class="flex gap-2 mt-3">
+              <span class="tag tag-silver text-[9px]">账号</span>
+              <span class="tag tag-silver text-[9px]">资源</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 资源3: Linux.do 帖子 -->
+      <a href="https://linux.do/t/topic/188813/1179" target="_blank" class="animate-on-scroll delay-3 link-card card-dark rounded-lg p-6 block group">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-dark-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-neon/10 transition-colors">
+            <span class="iconify text-2xl text-neon" data-icon="mdi:forum-outline"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5">
+              <h3 class="text-white font-bold text-base">Linux.do · 社区讨论帖</h3>
+              <span class="iconify text-dark-300 group-hover:text-neon transition-colors text-lg" data-icon="mdi:open-in-new"></span>
+            </div>
+            <p class="text-dark-300 text-sm leading-relaxed">关于 GitHub 免费建站的社区讨论，包含大量实战经验和问答。1179 条回复，信息密度极高。</p>
+            <div class="flex gap-2 mt-3">
+              <span class="tag tag-silver text-[9px]">社区</span>
+              <span class="tag tag-neon text-[9px]">1179回复</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 资源4: 示例站点 -->
+      <a href="https://yanglei-985.github.io/worktable/" target="_blank" class="animate-on-scroll delay-4 link-card card-dark rounded-lg p-6 block group">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 bg-dark-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-neon/10 transition-colors">
+            <span class="iconify text-2xl text-neon" data-icon="mdi:web"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5">
+              <h3 class="text-white font-bold text-base">Worktable · 实际案例</h3>
+              <span class="iconify text-dark-300 group-hover:text-neon transition-colors text-lg" data-icon="mdi:open-in-new"></span>
+            </div>
+            <p class="text-dark-300 text-sm leading-relaxed">GitHub Pages 实际搭建的网站案例，可以直接访问查看效果。证明零成本建站完全可行。</p>
+            <div class="flex gap-2 mt-3">
+              <span class="tag tag-silver text-[9px]">案例</span>
+              <span class="tag tag-neon text-[9px]">可访问</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ 搭建教程 ============ -->
+<section id="tutorial" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">STEP BY STEP</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        GitHub Pages <span class="text-neon">搭建</span>流程
+      </h2>
+      <p class="text-dark-300 mt-3 max-w-lg text-sm leading-relaxed">跟着做，不翻车。每一步都标注了关键操作点。</p>
+    </div>
+
+    <!-- 步骤列表 -->
+    <div class="space-y-5 max-w-4xl">
+      
+      <!-- Step 1 -->
+      <div class="animate-on-scroll delay-1 relative">
+        <span class="step-number">01</span>
+        <div class="card-dark rounded-lg p-6 pl-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-neon/10 border border-neon/20 rounded-md flex items-center justify-center">
+              <span class="iconify text-neon text-lg" data-icon="mdi:github"></span>
+            </div>
+            <h3 class="text-white font-bold">注册 GitHub 账号</h3>
+            <span class="tag tag-silver text-[9px] ml-auto">2分钟</span>
+          </div>
+          <p class="text-dark-300 text-sm leading-relaxed pl-11">访问 github.com，用邮箱注册。免费账号即可使用 GitHub Pages 功能。建议用户名用英文，后续会体现在默认域名中。</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="animate-on-scroll delay-2 relative">
+        <span class="step-number">02</span>
+        <div class="card-dark rounded-lg p-6 pl-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-neon/10 border border-neon/20 rounded-md flex items-center justify-center">
+              <span class="iconify text-neon text-lg" data-icon="mdi:repo-create"></span>
+            </div>
+            <h3 class="text-white font-bold">创建仓库</h3>
+            <span class="tag tag-silver text-[9px] ml-auto">1分钟</span>
+          </div>
+          <p class="text-dark-300 text-sm leading-relaxed pl-11">点击 New Repository，仓库名必须为 <code class="bg-dark-600 text-neon px-2 py-0.5 rounded text-xs font-mono">你的用户名.github.io</code>，勾选 Add README，设为 Public。</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="animate-on-scroll delay-3 relative">
+        <span class="step-number">03</span>
+        <div class="card-dark rounded-lg p-6 pl-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-neon/10 border border-neon/20 rounded-md flex items-center justify-center">
+              <span class="iconify text-neon text-lg" data-icon="mdi:file-code-outline"></span>
+            </div>
+            <h3 class="text-white font-bold">上传 HTML 文件</h3>
+            <span class="tag tag-silver text-[9px] ml-auto">3分钟</span>
+          </div>
+          <p class="text-dark-300 text-sm leading-relaxed pl-11">在仓库中创建 <code class="bg-dark-600 text-neon px-2 py-0.5 rounded text-xs font-mono">index.html</code> 文件，写入你的网页代码。也可以直接拖拽上传整个文件夹。支持 HTML/CSS/JS 全部文件类型。</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="animate-on-scroll delay-4 relative">
+        <span class="step-number">04</span>
+        <div class="card-dark rounded-lg p-6 pl-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-neon/10 border border-neon/20 rounded-md flex items-center justify-center">
+              <span class="iconify text-neon text-lg" data-icon="mdi:cog-outline"></span>
+            </div>
+            <h3 class="text-white font-bold">开启 Pages 服务</h3>
+            <span class="tag tag-silver text-[9px] ml-auto">1分钟</span>
+          </div>
+          <p class="text-dark-300 text-sm leading-relaxed pl-11">进入仓库 Settings → Pages，Source 选择 Deploy from a branch，Branch 选 main，保存。等待 1-2 分钟部署完成。</p>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="animate-on-scroll delay-5 relative">
+        <span class="step-number">05</span>
+        <div class="card-dark rounded-lg p-6 pl-8 border-neon/20!">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-neon rounded-md flex items-center justify-center neon-glow">
+              <span class="iconify text-black text-lg" data-icon="mdi:rocket-launch-outline"></span>
+            </div>
+            <h3 class="text-white font-bold">访问你的网站</h3>
+            <span class="tag tag-neon text-[9px] ml-auto">上线!</span>
+          </div>
+          <p class="text-dark-300 text-sm leading-relaxed pl-11">打开 <code class="bg-dark-600 text-neon px-2 py-0.5 rounded text-xs font-mono">https://你的用户名.github.io</code>，你的网站就已经在线了。全球 CDN 加速，国内也能直接访问。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider-silver max-w-7xl mx-auto"></div>
+
+<!-- ============ 视频教程 ============ -->
+<section id="video" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">VIDEO TUTORIAL</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        视频<span class="text-neon">实操</span>演示
+      </h2>
+      <p class="text-dark-300 mt-3 max-w-lg text-sm leading-relaxed">录屏操作演示，包含 GitHub Pages 搭建全流程 + 卡卡字幕助手使用方法。边看边做。</p>
+    </div>
+
+    <div class="animate-on-scroll delay-1 max-w-4xl">
+      <!-- 视频容器 -->
+      <div class="relative rounded-lg overflow-hidden neon-glow">
+        <div class="bg-dark-700 aspect-video flex items-center justify-center relative">
+          <!-- 封面图 -->
+          <img src="https://picsum.photos/seed/tutorialcover2024/1280/720.jpg" alt="视频封面" class="absolute inset-0 w-full h-full object-cover opacity-30">
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-dark-900/40 to-dark-900/60"></div>
+          
+          <!-- 播放按钮 -->
+          <div class="relative z-10 text-center cursor-pointer group" id="videoPlayBtn" onclick="loadVideo()">
+            <div class="w-20 h-20 md:w-24 md:h-24 bg-neon rounded-full flex items-center justify-center mx-auto mb-4 neon-glow-strong group-hover:scale-110 transition-transform duration-300">
+              <span class="iconify text-black text-4xl md:text-5xl ml-1" data-icon="mdi:play"></span>
+            </div>
+            <p class="text-white font-bold text-lg">点击播放视频</p>
+            <p class="text-dark-300 text-xs mt-1">GitHub Pages + 卡卡字幕助手</p>
+          </div>
+
+          <!-- 视频iframe - 隐藏直到点击 -->
+          <div id="videoFrame" class="absolute inset-0 hidden">
+            <iframe 
+              src="" 
+              id="videoIframe"
+              allow="autoplay; fullscreen" 
+              allowfullscreen
+              class="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- 视频信息 -->
+      <div class="flex flex-wrap items-center gap-4 mt-5">
+        <div class="flex items-center gap-2 text-dark-300 text-xs">
+          <span class="iconify" data-icon="mdi:clock-outline"></span>
+          <span>录屏演示</span>
+        </div>
+        <div class="flex items-center gap-2 text-dark-300 text-xs">
+          <span class="iconify" data-icon="mdi:tools"></span>
+          <span>GitHub Pages + 卡卡字幕助手</span>
+        </div>
+        <div class="flex items-center gap-2 text-dark-300 text-xs">
+          <span class="iconify" data-icon="mdi:cloud-check-outline"></span>
+          <span>Dropbox 在线观看</span>
+        </div>
+      </div>
+
+      <!-- 备用：直接下载链接 -->
+      <div class="mt-4 card-dark rounded-lg p-4">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <span class="iconify text-silver text-xl" data-icon="mdi:download-outline"></span>
+            <div>
+              <p class="text-white text-sm font-semibold">无法在线播放？</p>
+              <p class="text-dark-300 text-xs">点击右侧链接直接下载或在新标签页打开</p>
+            </div>
+          </div>
+          <a href="https://www.dropbox.com/scl/fi/r60eufrqo99sfqgd2ipox/simplescreenrecorder-11.mp4?rlkey=jrpkfrz7wpsba2da9r4bb1sgn&e=2&st=wmf3z51a&dl=0" target="_blank" class="inline-flex items-center gap-2 bg-dark-600 hover:bg-dark-500 text-white text-xs font-bold tracking-wider px-4 py-2 rounded border border-dark-400 hover:border-neon/30 transition-all">
+            <span class="iconify" data-icon="mdi:open-in-new"></span>
+            打开链接
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ 实际案例 ============ -->
+<section id="cases" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">LIVE DEMO</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        真实<span class="text-neon">上线</span>案例
+      </h2>
+      <p class="text-dark-300 mt-3 max-w-lg text-sm leading-relaxed">不是PPT演示，是真正跑在 GitHub Pages 上的网站。</p>
+    </div>
+
+    <div class="animate-on-scroll delay-1">
+      <a href="https://yanglei-985.github.io/worktable/" target="_blank" class="block group">
+        <div class="card-dark rounded-lg overflow-hidden">
+          <!-- 模拟浏览器窗口 -->
+          <div class="bg-dark-600 px-4 py-3 flex items-center gap-2 border-b border-dark-400">
+            <div class="flex gap-1.5">
+              <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+            </div>
+            <div class="flex-1 mx-4">
+              <div class="bg-dark-700 rounded-md px-3 py-1.5 text-xs text-dark-300 font-mono flex items-center gap-2 max-w-md mx-auto">
+                <span class="iconify text-green-500 text-sm" data-icon="mdi:lock"></span>
+                yanglei-985.github.io/worktable/
+              </div>
+            </div>
+          </div>
+          <!-- 网站预览 -->
+          <div class="aspect-video relative overflow-hidden">
+            <img src="https://picsum.photos/seed/worktable2024/1280/720.jpg" alt="网站预览" class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500 group-hover:scale-105 transition-transform">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-transparent to-dark-900/30"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8">
+              <div class="flex items-end justify-between">
+                <div>
+                  <span class="tag tag-neon mb-2">WORKTABLE</span>
+                  <h3 class="text-white text-xl md:text-2xl font-bold mt-2">GitHub Pages 实际部署站点</h3>
+                  <p class="text-dark-300 text-sm mt-2">点击查看真实效果 → 无需服务器，无需付费</p>
+                </div>
+                <div class="hidden md:flex w-12 h-12 bg-neon rounded-full items-center justify-center neon-glow group-hover:translate-x-2 transition-transform">
+                  <span class="iconify text-black text-2xl" data-icon="mdi:arrow-right"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider-silver max-w-7xl mx-auto"></div>
+
+<!-- ============ 灰产揭秘 ============ -->
+<section id="extra" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">EXTRA INSIGHT</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        延伸<span class="text-neon">阅读</span>
+      </h2>
+      <p class="text-dark-300 mt-3 max-w-lg text-sm leading-relaxed">了解这些技术背后，灰产是怎么运作的。知道套路，才能更好地保护自己。</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <!-- 主内容 -->
+      <div class="lg:col-span-3 animate-on-scroll delay-1">
+        <div class="card-dark rounded-lg p-7 h-full">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-neon/10 border border-neon/20 rounded-lg flex items-center justify-center">
+              <span class="iconify text-neon text-xl" data-icon="mdi:eye-outline"></span>
+            </div>
+            <div>
+              <h3 class="text-white font-bold text-base">灰产运作模式简析</h3>
+              <p class="text-dark-300 text-xs">给周老师的简要分享</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-sm text-dark-300 leading-relaxed">
+            <p>
+              <span class="text-white font-semibold">所谓"灰产"</span>，本质上是利用信息差和技术门槛，在合规边缘获取利益的模式。和 GitHub Pages 免费建站这个话题相关，常见的套路有：
+            </p>
+
+            <div class="bg-dark-800 rounded-md p-4 border-l-2 border-neon">
+              <p class="text-white font-semibold text-xs uppercase tracking-wider mb-2">套路一：免费的东西卖钱</p>
+              <p class="text-dark-300 text-xs leading-relaxed">GitHub Pages 本身完全免费，但有人把它包装成"建站服务"，收取几百到几千不等的费用。客户不懂技术，觉得能有个网站就行。</p>
+            </div>
+
+            <div class="bg-dark-800 rounded-md p-4 border-l-2 border-silver">
+              <p class="text-white font-semibold text-xs uppercase tracking-wider mb-2">套路二：模板倒卖</p>
+              <p class="text-dark-300 text-xs leading-relaxed">从免费模板网站下载模板，稍作修改后当作"原创定制"高价出售。成本低到接近零，利润率极高。</p>
+            </div>
+
+            <div class="bg-dark-800 rounded-md p-4 border-l-2 border-neon">
+              <p class="text-white font-semibold text-xs uppercase tracking-wider mb-2">套路三：培训割韭菜</p>
+              <p class="text-dark-300 text-xs leading-relaxed">把免费教程包装成"付费课程"，标题党营销："月入过万的建站副业"。实际内容在 YouTube 和 B 站都能免费学到。</p>
+            </div>
+
+            <div class="bg-dark-800 rounded-md p-4 border-l-2 border-silver">
+              <p class="text-white font-semibold text-xs uppercase tracking-wider mb-2">套路四：域名和服务捆绑</p>
+              <p class="text-dark-300 text-xs leading-relaxed">给你"免费建站"，但要求在他们那里买域名（溢价 3-5 倍）或续费"维护服务"。第一年看似免费，后续年年收割。</p>
+            </div>
+
+            <p class="text-silver text-xs pt-2">
+              核心逻辑就一句话：<span class="text-neon font-semibold">把公开的免费资源，通过信息不对称，转化为付费产品。</span>知道了就不难防。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 侧边栏 -->
+      <div class="lg:col-span-2 space-y-5">
+        
+        <!-- Linux.do 讨论 -->
+        <a href="https://linux.do/t/topic/188813/1179" target="_blank" class="animate-on-scroll delay-2 block group">
+          <div class="card-dark rounded-lg p-5 h-full">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="iconify text-neon text-lg" data-icon="mdi:fire"></span>
+              <span class="text-xs text-neon font-bold uppercase tracking-wider">热门讨论</span>
+            </div>
+            <h4 class="text-white font-bold text-sm mb-2 group-hover:text-neon transition-colors">Linux.do 建站讨论帖</h4>
+            <p class="text-dark-300 text-xs leading-relaxed">1179 条回复的社区帖，里面有不少人分享了被套路和避坑的经验，值得一看。</p>
+            <div class="flex items-center gap-1 text-neon text-xs font-semibold mt-3 group-hover:gap-2 transition-all">
+              查看讨论 <span class="iconify" data-icon="mdi:arrow-right"></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- AI工具 -->
+        <a href="https://aicoco.xyz/home" target="_blank" class="animate-on-scroll delay-3 block group">
+          <div class="card-dark rounded-lg p-5 h-full">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="iconify text-silver text-lg" data-icon="mdi:star-outline"></span>
+              <span class="text-xs text-silver font-bold uppercase tracking-wider">推荐工具</span>
+            </div>
+            <h4 class="text-white font-bold text-sm mb-2 group-hover:text-neon transition-colors">AICOCO · AI 工具导航</h4>
+            <p class="text-dark-300 text-xs leading-relaxed">做灰产的人也用 AI 工具提效。了解他们用什么工具，能更好地识别AI生成的内容。</p>
+            <div class="flex items-center gap-1 text-neon text-xs font-semibold mt-3 group-hover:gap-2 transition-all">
+              前往查看 <span class="iconify" data-icon="mdi:arrow-right"></span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 提示框 -->
+        <div class="animate-on-scroll delay-4 card-dark rounded-lg p-5 border-neon/10!">
+          <div class="flex items-start gap-3">
+            <span class="iconify text-neon text-xl flex-shrink-0 mt-0.5" data-icon="mdi:shield-check-outline"></span>
+            <div>
+              <h4 class="text-white font-bold text-sm mb-1">防坑要点</h4>
+              <ul class="text-dark-300 text-xs leading-relaxed space-y-1.5">
+                <li class="flex items-start gap-1.5">
+                  <span class="text-neon mt-0.5">·</span>
+                  任何要你付费的"GitHub建站"都是信息差变现
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <span class="text-neon mt-0.5">·</span>
+                  域名可以在阿里云/Cloudflare自购，成本几十块/年
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <span class="text-neon mt-0.5">·</span>
+                  HTML模板在 ThemeForest 等平台大量免费可用
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <span class="text-neon mt-0.5">·</span>
+                  遇到"免费建站+后续收费"模式要警惕
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ 快速链接汇总 ============ -->
+<section class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="animate-on-scroll mb-14">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-8 h-px bg-neon"></div>
+        <span class="tag tag-neon">QUICK ACCESS</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+        一键<span class="text-neon">直达</span>
+      </h2>
+    </div>
+
+    <div class="animate-on-scroll delay-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <a href="https://aicoco.xyz/home" target="_blank" class="group bg-dark-700 hover:bg-dark-600 border border-dark-400 hover:border-neon/30 rounded-lg p-5 text-center transition-all hover:-translate-y-1">
+        <span class="iconify text-3xl text-neon mb-3 group-hover:scale-110 transition-transform inline-block" data-icon="mdi:robot-outline"></span>
+        <h4 class="text-white font-bold text-sm">AICOCO</h4>
+        <p class="text-dark-300 text-xs mt-1">AI工具导航</p>
+      </a>
+
+      <a href="https://shop.86gamestore.com/" target="_blank" class="group bg-dark-700 hover:bg-dark-600 border border-dark-400 hover:border-neon/30 rounded-lg p-5 text-center transition-all hover:-translate-y-1">
+        <span class="iconify text-3xl text-neon mb-3 group-hover:scale-110 transition-transform inline-block" data-icon="mdi:gamepad-variant-outline"></span>
+        <h4 class="text-white font-bold text-sm">86GameStore</h4>
+        <p class="text-dark-300 text-xs mt-1">账号资源</p>
+      </a>
+
+      <a href="https://linux.do/t/topic/188813/1179" target="_blank" class="group bg-dark-700 hover:bg-dark-600 border border-dark-400 hover:border-neon/30 rounded-lg p-5 text-center transition-all hover:-translate-y-1">
+        <span class="iconify text-3xl text-neon mb-3 group-hover:scale-110 transition-transform inline-block" data-icon="mdi:forum-outline"></span>
+        <h4 class="text-white font-bold text-sm">Linux.do</h4>
+        <p class="text-dark-300 text-xs mt-1">社区讨论帖</p>
+      </a>
+
+      <a href="https://yanglei-985.github.io/worktable/" target="_blank" class="group bg-dark-700 hover:bg-dark-600 border border-dark-400 hover:border-neon/30 rounded-lg p-5 text-center transition-all hover:-translate-y-1">
+        <span class="iconify text-3xl text-neon mb-3 group-hover:scale-110 transition-transform inline-block" data-icon="mdi:web"></span>
+        <h4 class="text-white font-bold text-sm">Worktable</h4>
+        <p class="text-dark-300 text-xs mt-1">实际案例</p>
+      </a>
+
+    </div>
+
+    <!-- 视频链接单独突出 -->
+    <div class="animate-on-scroll delay-2 mt-5">
+      <a href="https://www.dropbox.com/scl/fi/r60eufrqo99sfqgd2ipox/simplescreenrecorder-11.mp4?rlkey=jrpkfrz7wpsba2da9r4bb1sgn&e=2&st=wmf3z51a&dl=0" target="_blank" class="group flex items-center justify-between bg-neon/5 hover:bg-neon/10 border border-neon/20 hover:border-neon/40 rounded-lg p-5 transition-all">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-neon rounded-lg flex items-center justify-center neon-glow">
+            <span class="iconify text-black text-2xl" data-icon="mdi:play-circle"></span>
+          </div>
+          <div>
+            <h4 class="text-white font-bold text-sm">视频教程 · 完整录屏</h4>
+            <p class="text-dark-300 text-xs mt-0.5">GitHub Pages 搭建 + 卡卡字幕助手操作演示</p>
+          </div>
+        </div>
+        <span class="iconify text-neon text-2xl group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-right-circle"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="border-t border-dark-500 py-12">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 bg-neon rounded flex items-center justify-center">
+          <span class="iconify text-black text-sm" data-icon="mdi:code-braces"></span>
+        </div>
+        <span class="text-white font-bold text-sm tracking-wider">TECH<span class="text-neon">SHARE</span></span>
+      </div>
+
+      <!-- 说明 -->
+      <p class="text-dark-300 text-xs text-center max-w-md leading-relaxed">
+        本页面内容仅供学习交流，分享 GitHub Pages 免费建站方法及相关资源。所有外链指向第三方平台，内容归原平台所有。
+      </p>
+
+      <!-- 版权 -->
+      <p class="text-dark-400 text-xs">
+        分享给周老师 · 2024
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== 导航栏滚动效果 =====
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  
+  if (currentScroll > 80) {
+    navbar.style.background = 'rgba(10,10,10,0.9)';
+    navbar.style.backdropFilter = 'blur(20px)';
+    navbar.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+  } else {
+    navbar.style.background = 'transparent';
+    navbar.style.backdropFilter = 'none';
+    navbar.style.borderBottom = 'none';
+  }
+  
+  lastScroll = currentScroll;
+});
+
+// ===== 移动端菜单 =====
+let menuOpen = false;
+
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const menu = document.getElementById('mobileMenu');
+  const icon = document.getElementById('menuIcon');
+  
+  if (menuOpen) {
+    menu.classList.add('open');
+    icon.setAttribute('data-icon', 'mdi:close');
+  } else {
+    menu.classList.remove('open');
+    icon.setAttribute('data-icon', 'mdi:menu');
+  }
+}
+
+function closeMenu() {
+  menuOpen = false;
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('menuIcon').setAttribute('data-icon', 'mdi:menu');
+}
+
+// ===== 滚动动画 =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => {
+  observer.observe(el);
+});
+
+// ===== 视频加载 =====
+function loadVideo() {
+  const dropboxUrl = 'https://www.dropbox.com/scl/fi/r60eufrqo99sfqgd2ipox/simplescreenrecorder-11.mp4?rlkey=jrpkfrz7wpsba2da9r4bb1sgn&e=2&st=wmf3z51a&dl=0';
+  
+  // 尝试在iframe中加载
+  const iframe = document.getElementById('videoIframe');
+  const frameContainer = document.getElementById('videoFrame');
+  const playBtn = document.getElementById('videoPlayBtn');
+  
+  // 先隐藏播放按钮
+  playBtn.style.display = 'none';
+  
+  // 直接打开链接（Dropbox 视频不支持 iframe 嵌入）
+  // 显示提示
+  showToast('正在打开视频链接...');
+  
+  setTimeout(() => {
+    window.open(dropboxUrl, '_blank');
+    // 恢复播放按钮
+    playBtn.style.display = '';
+  }, 500);
+}
+
+// ===== Toast =====
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+// ===== 平滑滚动增强 =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
